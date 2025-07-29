@@ -1,13 +1,43 @@
-<!doctype html>
-<html lang="es">
+---
+import "../styles/global.css";
+const { children } = Astro.props;
+---
+
+<html lang="es" class="bg-gray-950 text-white min-h-screen">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Docs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Centro de Documentación</title>
+    <link rel="stylesheet" href="/global.css" />
   </head>
-  <body>
-    <slot />
+  <body class="min-h-screen flex flex-col">
+    <header
+      class="bg-gray-900 p-4 shadow-md flex justify-between items-center max-w-7xl mx-auto"
+    >
+      <div class="flex items-center gap-3">
+        <img src="/logo.svg" alt="Astro Docs" class="w-8 h-8" />
+        <span class="font-semibold text-lg">Astro Docs</span>
+        <span class="text-gray-400 text-sm">Centro de Documentación</span>
+      </div>
+      <nav class="flex items-center gap-4">
+        <a href="/" class="hover:underline flex items-center gap-1">
+          <span>🏠</span> Inicio
+        </a>
+        <input
+          type="search"
+          placeholder="Buscar..."
+          class="rounded-md bg-gray-800 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          class="bg-purple-600 hover:bg-purple-700 rounded-md px-4 py-2 text-white font-semibold"
+        >
+          GitHub
+        </button>
+      </nav>
+    </header>
+    <main class="flex-grow">{children}</main>
+    <footer class="bg-gray-900 p-4 text-center text-sm text-gray-400">
+      © 2025 Centro de Documentación - alxrgdriguez
+    </footer>
   </body>
 </html>

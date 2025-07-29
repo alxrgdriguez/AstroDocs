@@ -1,0 +1,36 @@
+---
+const {
+  title,
+  description,
+  stats,
+  tags,
+  bgColor = "bg-blue-700",
+  icon,
+} = Astro.props;
+---
+
+<section
+  class={`${bgColor} text-white p-8 rounded-b-xl text-center max-w-4xl mx-auto`}
+>
+  <div class="text-5xl mb-4">{icon}</div>
+  <h1 class="text-3xl font-bold mb-2">{title}</h1>
+  <p class="mb-6">{description}</p>
+  <div class="flex justify-center gap-4 mb-6">
+    {
+      stats.map((stat) => (
+        <div class="bg-white bg-opacity-20 rounded px-4 py-2 text-sm font-semibold">
+          {stat}
+        </div>
+      ))
+    }
+  </div>
+  <div class="flex justify-center gap-3 flex-wrap">
+    {
+      tags.map((tag) => (
+        <button class="bg-white bg-opacity-20 rounded px-4 py-1 text-sm hover:bg-opacity-40 transition">
+          {tag}
+        </button>
+      ))
+    }
+  </div>
+</section>
