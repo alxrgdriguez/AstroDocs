@@ -1,0 +1,164 @@
+---
+import { categories } from "../data/categories.ts";
+
+const allCategories = [
+  "Todas",
+  "DevOps",
+  "Control de versiones",
+  "Bases de datos",
+  "Backend",
+  "Frontend",
+];
+---
+
+<section class="p-6 bg-gray-900 rounded-md text-gray-200 max-w-7xl mx-auto">
+  <!-- Filtros por categoría -->
+  <nav class="mb-4 flex flex-wrap gap-2 items-center">
+    <span class="font-semibold text-yellow-400 mr-2"
+      >Filtrar por categoría:</span
+    >
+    {
+      allCategories.map((cat, i) => (
+        <button
+          type="button"
+          data-category={cat}
+          class={`px-3 py-1 rounded text-sm font-medium transition ${
+            i === 0
+              ? "bg-purple-600 text-white"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+          }`}
+          aria-pressed={i === 0 ? "true" : "false"}
+        >
+          {cat}
+        </button>
+      ))
+    }
+  </nav>
+
+  <!-- Buscador -->
+  <div class="mb-6 flex items-center gap-4">
+    <input
+      type="search"
+      id="search-input"
+      placeholder="Buscar documentación..."
+      class="flex-grow bg-gray-800 rounded-md px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
+      autocomplete="off"
+      aria-label="Buscar documentación"
+    />
+    <kbd
+      class="bg-gray-700 text-gray-300 text-xs font-mono px-2 py-1 rounded select-none"
+    >
+      Ctrl + K
+    </kbd>
+  </div>
+
+  <!-- Contador -->
+  <p id="docs-count" class="mb-4 text-gray-400">
+    Mostrando {categories.length} de {categories.length} documentos
+  </p>
+
+  <!-- Tarjetas -->
+  <section
+    id="cards-container"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+  >
+    {
+      categories.map((cat) => (
+        <article
+          class="bg-gray-800 p-5 rounded-lg shadow-md"
+          data-category={cat.category}
+          data-title={cat.title.toLowerCase()}
+          data-description={cat.description.toLowerCase()}
+        >
+          <div class="flex items-center gap-3 mb-3">
+            <img src={cat.icon} alt={`${cat.title} icon`} class="w-8 h-8" />
+            <h2 class="font-bold text-lg text-white">{cat.title}</h2>
+            <span
+              class={`ml-auto text-xs font-semibold rounded px-2 py-0.5 ${cat.categoryColor}`}
+            >
+              {cat.category}
+            </span>
+          </div>
+          <p class="text-gray-300">{cat.description}</p>
+          <button
+            type="button"
+            class="mt-4 bg-blue-600 hover:bg-blue-700 text-white rounded px-3 py-1"
+          >
+            Explorar Comandos →
+          </button>
+        </article>
+      ))
+    }
+  </section>
+</section>
+
+<!-- Lógica interactividad -->
+<script type="module">
+  const buttons = document.querySelectorAll("nav button[data-category]");
+  const input = document.getElementById("search-input");
+  const cardsContainer = document.getElementById("cards-container");
+  const docsCount = document.getElementById("docs-count");
+
+  let activeCategory = "Todas";
+  let searchTerm = "";
+
+  function updateCards() {
+    const cards = [...cardsContainer.children];
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const title = card.dataset.title;
+      const description = card.dataset.description;
+      const category = card.dataset.category;
+
+      const matchesCategory =
+        activeCategory === "Todas" || category === activeCategory;
+      const matchesSearch =
+        searchTerm === "" ||
+        title.includes(searchTerm) ||
+        description.includes(searchTerm) ||
+        category.toLowerCase().includes(searchTerm);
+
+      if (matchesCategory && matchesSearch) {
+        card.style.display = "";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    docsCount.textContent = `Mostrando ${visibleCount} de ${cards.length} documentos`;
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => {
+        b.classList.remove("bg-purple-600", "text-white");
+        b.classList.add("bg-gray-700", "text-gray-300");
+        b.setAttribute("aria-pressed", "false");
+      });
+
+      btn.classList.add("bg-purple-600", "text-white");
+      btn.classList.remove("bg-gray-700", "text-gray-300");
+      btn.setAttribute("aria-pressed", "true");
+
+      activeCategory = btn.dataset.category;
+      updateCards();
+    });
+  });
+
+  input.addEventListener("input", (e) => {
+    searchTerm = e.target.value.toLowerCase();
+    updateCards();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+
+  updateCards();
+</script>

@@ -1,0 +1,87 @@
+---
+const githubUrl = "https://github.com/alxrgdriguez";
+---
+
+<header class="bg-gray-900 shadow-lg">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+    <nav class="flex items-center justify-between h-16">
+      <!-- Logo y título -->
+      <a href="/" class="flex items-center gap-3 group">
+        <img
+          src="/favicon.svg"
+          alt="Astro Docs Logo"
+          class="h-10 w-10 transition-transform duration-300 group-hover:scale-110"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="leading-tight">
+          <h1 class="text-white font-extrabold text-xl tracking-tight">
+            Astro Docs
+          </h1>
+          <p class="text-gray-400 text-xs font-light -mt-1">
+            Centro de Documentación
+          </p>
+        </div>
+      </a>
+
+      <!-- GitHub button -->
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-semibold shadow-md transition-shadow duration-300"
+        aria-label="Ver repositorio GitHub"
+        title="Ver repositorio GitHub"
+      >
+        GitHub
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.11.82-.26.82-.577v-2.234c-3.338.724-4.033-1.61-4.033-1.61-.546-1.386-1.333-1.755-1.333-1.755-1.09-.745.082-.73.082-.73 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.334-5.466-5.93 0-1.31.467-2.38 1.235-3.22-.125-.303-.535-1.523.115-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.985-.4 3.005-.404 1.02.005 2.045.137 3.005.404 2.29-1.552 3.29-1.23 3.29-1.23.655 1.653.245 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.81 1.102.81 2.222v3.293c0 .32.215.694.825.576C20.565 21.795 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+          ></path>
+        </svg>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    // Enfocar input al pulsar Ctrl+K
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        const input = document.getElementById("search-input");
+        if (input) {
+          input.focus();
+          input.select();
+        }
+      }
+    });
+
+    // Filtro básico de búsqueda por nombre o categoría
+    const docs = [
+      { name: "Introducción", category: "General" },
+      { name: "Configuración", category: "Setup" },
+      { name: "Componentes", category: "UI" },
+      { name: "API", category: "Referencia" },
+      { name: "Guía Rápida", category: "Tutorial" },
+    ];
+
+    const input = document.getElementById("search-input");
+    if (input) {
+      input.addEventListener("input", () => {
+        const val = input.value.toLowerCase();
+        const filtered = docs.filter(
+          (doc) =>
+            doc.name.toLowerCase().includes(val) ||
+            doc.category.toLowerCase().includes(val)
+        );
+        console.log("Resultados búsqueda:", filtered);
+        // Aquí puedes actualizar el DOM o enviar el filtro a donde necesites
+      });
+    }
+  </script>
+</header>

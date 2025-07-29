@@ -1,41 +1,10 @@
 ---
-import HeaderTopic from "../components/HeaderTopic.astro";
-import SearchBar from "../components/SearchBar.astro";
-import CategoryCard from "../components/CategoryCard.astro";
-import { categories } from "../data/categories.ts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import CategoryBrowser from "../components/CategoryBrowser.astro";
 ---
 
-<html lang="es" class="bg-gray-950 text-white min-h-screen">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Centro de Documentación</title>
-    <link rel="stylesheet" href="/global.css" />
-  </head>
-  <body class="min-h-screen flex flex-col">
-    <HeaderTopic
-      title="Centro de Documentación"
-      description="Guías técnicas, tutoriales y referencias para desarrollo profesional"
-      stats={["8 Documentos", "5 Categorías", "∞ Recursos"]}
-      tags={["Búsqueda", "Aleatorio"]}
-      bgColor="bg-gradient-to-r from-purple-700 to-blue-700"
-      icon="📚"
-    />
-    <SearchBar />
-    <main
-      class="max-w-7xl mx-auto mt-10 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-    >
-      {
-        categories.map((cat) => (
-          <CategoryCard
-            title={cat.title}
-            description={cat.description}
-            category={cat.category}
-            categoryColor={cat.categoryColor}
-            icon={cat.icon}
-          />
-        ))
-      }
-    </main>
-  </body>
-</html>
+<BaseLayout title="Centro de Documentación">
+  <Header />
+  <CategoryBrowser />
+</BaseLayout>
