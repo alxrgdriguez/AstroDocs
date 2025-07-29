@@ -1,5 +1,767 @@
 ---
-import Content from "../content/docker.md";
+import CommandCopyButton from "../components/CommandCopyButton.astro";
+import Header from "../components/Header.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Content />
+<BaseLayout title="🐳 Docker - Comandos Esenciales" favicon="/favicon.png">
+  <Header />
+  <ScrollToTop />
+  <div
+    class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+  >
+    <!-- Hero Section -->
+    <section
+      class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800"
+    >
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+      >
+      </div>
+
+      <div class="relative container mx-auto px-4 py-16">
+        <div class="text-center">
+          <div class="mb-6">
+            <img
+              src="/images/docker.svg"
+              alt="Docker Logo"
+              class="w-20 h-20 mx-auto mb-4 drop-shadow-lg"
+            />
+          </div>
+          <h1
+            class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent"
+          >
+            Docker - Comandos Esenciales
+          </h1>
+          <p
+            class="text-lg md:text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed"
+          >
+            Domina Docker con esta colección completa de comandos para
+            desarrollo y producción. Desde contenedores básicos hasta
+            orquestación avanzada.
+          </p>
+
+          <!-- Quick Stats -->
+          <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <div
+              class="bg-white/10 backdrop-blur-md rounded-xl px-6 py-3 border border-white/20"
+            >
+              <div class="text-2xl font-bold text-white">100+</div>
+              <div class="text-sm text-blue-100">Comandos</div>
+            </div>
+            <div
+              class="bg-white/10 backdrop-blur-md rounded-xl px-6 py-3 border border-white/20"
+            >
+              <div class="text-2xl font-bold text-white">8</div>
+              <div class="text-sm text-blue-100">Secciones</div>
+            </div>
+            <div
+              class="bg-white/10 backdrop-blur-md rounded-xl px-6 py-3 border border-white/20"
+            >
+              <div class="text-2xl font-bold text-white">Pro</div>
+              <div class="text-sm text-blue-100">Nivel</div>
+            </div>
+          </div>
+
+          <!-- Quick Navigation -->
+          <div class="flex flex-wrap justify-center gap-3">
+            <a
+              href="#containers"
+              class="bg-blue-600/80 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 border border-blue-500/50 hover:border-blue-400 hover:scale-105"
+            >
+              📦 Contenedores
+            </a>
+            <a
+              href="#images"
+              class="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 border border-white/30 hover:border-white/50 hover:scale-105"
+            >
+              🖼️ Imágenes
+            </a>
+            <a
+              href="#compose"
+              class="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 border border-white/30 hover:border-white/50 hover:scale-105"
+            >
+              🔧 Compose
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="container mx-auto px-4 py-8">
+      <div
+        class="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-6 mb-8"
+      >
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+          <span class="text-blue-400">📋</span>
+          Tabla de Contenidos
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <a
+            href="#containers"
+            class="group flex items-center gap-3 p-4 rounded-xl bg-gray-700/50 hover:bg-gray-700 transition-all duration-300 border border-gray-600 hover:border-blue-500"
+          >
+            <span class="text-2xl group-hover:scale-110 transition-transform"
+              >📦</span
+            >
+            <div>
+              <div class="font-semibold text-white group-hover:text-blue-400">
+                Contenedores
+              </div>
+              <div class="text-sm text-gray-400">Gestión básica y avanzada</div>
+            </div>
+          </a>
+          <a
+            href="#images"
+            class="group flex items-center gap-3 p-4 rounded-xl bg-gray-700/50 hover:bg-gray-700 transition-all duration-300 border border-gray-600 hover:border-blue-500"
+          >
+            <span class="text-2xl group-hover:scale-110 transition-transform"
+              >🖼️</span
+            >
+            <div>
+              <div class="font-semibold text-white group-hover:text-blue-400">
+                Imágenes
+              </div>
+              <div class="text-sm text-gray-400">
+                Build, push, pull y gestión
+              </div>
+            </div>
+          </a>
+          <a
+            href="#volumes"
+            class="group flex items-center gap-3 p-4 rounded-xl bg-gray-700/50 hover:bg-gray-700 transition-all duration-300 border border-gray-600 hover:border-blue-500"
+          >
+            <span class="text-2xl group-hover:scale-110 transition-transform"
+              >💾</span
+            >
+            <div>
+              <div class="font-semibold text-white group-hover:text-blue-400">
+                Volúmenes
+              </div>
+              <div class="text-sm text-gray-400">Persistencia de datos</div>
+            </div>
+          </a>
+          <a
+            href="#networks"
+            class="group flex items-center gap-3 p-4 rounded-xl bg-gray-700/50 hover:bg-gray-700 transition-all duration-300 border border-gray-600 hover:border-blue-500"
+          >
+            <span class="text-2xl group-hover:scale-110 transition-transform"
+              >🌐</span
+            >
+            <div>
+              <div class="font-semibold text-white group-hover:text-blue-400">
+                Redes
+              </div>
+              <div class="text-sm text-gray-400">
+                Conectividad entre contenedores
+              </div>
+            </div>
+          </a>
+          <a
+            href="#compose"
+            class="group flex items-center gap-3 p-4 rounded-xl bg-gray-700/50 hover:bg-gray-700 transition-all duration-300 border border-gray-600 hover:border-blue-500"
+          >
+            <span class="text-2xl group-hover:scale-110 transition-transform"
+              >🔧</span
+            >
+            <div>
+              <div class="font-semibold text-white group-hover:text-blue-400">
+                Docker Compose
+              </div>
+              <div class="text-sm text-gray-400">
+                Orquestación multi-contenedor
+              </div>
+            </div>
+          </a>
+          <a
+            href="#system"
+            class="group flex items-center gap-3 p-4 rounded-xl bg-gray-700/50 hover:bg-gray-700 transition-all duration-300 border border-gray-600 hover:border-blue-500"
+          >
+            <span class="text-2xl group-hover:scale-110 transition-transform"
+              >⚙️</span
+            >
+            <div>
+              <div class="font-semibold text-white group-hover:text-blue-400">
+                Sistema
+              </div>
+              <div class="text-sm text-gray-400">Limpieza y mantenimiento</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-12">
+      <!-- Containers Section -->
+      <section id="containers" class="mb-16">
+        <div
+          class="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-8"
+        >
+          <h2
+            class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3"
+          >
+            <span>📦</span>
+            Gestión de Contenedores
+          </h2>
+
+          <!-- Basic Commands -->
+          <div class="mb-12">
+            <h3
+              class="text-2xl font-semibold text-blue-300 mb-6 border-b border-gray-600 pb-2"
+            >
+              Comandos Básicos
+            </h3>
+
+            <div class="grid gap-6">
+              <!-- List containers -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-green-400">📋</span>
+                  Listar contenedores activos
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Muestra todos los contenedores que están ejecutándose
+                  actualmente.
+                </p>
+                <CommandCopyButton command="docker ps" />
+              </div>
+
+              <!-- List all containers -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-green-400">📋</span>
+                  Listar todos los contenedores
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Incluye contenedores detenidos y en ejecución.
+                </p>
+                <CommandCopyButton command="docker ps -a" />
+              </div>
+
+              <!-- Run container -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-green-400">🚀</span>
+                  Crear y ejecutar contenedor
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Crea un nuevo contenedor y lo ejecuta en segundo plano.
+                </p>
+                <CommandCopyButton
+                  command="docker run -d --name mi-contenedor nginx:latest"
+                />
+                <div
+                  class="mt-4 p-4 bg-blue-900/20 border border-blue-700/50 rounded-lg"
+                >
+                  <p class="text-blue-200 text-sm">
+                    <strong>Parámetros:</strong>
+                    <code class="text-blue-300">-d</code> ejecuta en segundo plano,
+                    <code class="text-blue-300">--name</code> asigna un nombre al
+                    contenedor
+                  </p>
+                </div>
+              </div>
+
+              Stop container
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-red-400">⏹️</span>
+                  Detener contenedor
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Detiene un contenedor en ejecución de forma elegante.
+                </p>
+                <CommandCopyButton command="docker stop mi-contenedor" />
+              </div>
+
+              <!-- Start container -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-green-400">▶️</span>
+                  Iniciar contenedor
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Inicia un contenedor que estaba detenido.
+                </p>
+                <CommandCopyButton command="docker start mi-contenedor" />
+              </div>
+
+              <!-- Remove container -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-red-400">🗑️</span>
+                  Eliminar contenedor
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Elimina un contenedor detenido permanentemente.
+                </p>
+                <CommandCopyButton command="docker rm mi-contenedor" />
+                <div class="mt-4">
+                  <p class="text-yellow-200 text-sm mb-2">
+                    <strong>Para eliminar un contenedor en ejecución:</strong>
+                  </p>
+                  <CommandCopyButton command="docker rm -f mi-contenedor" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Advanced Commands -->
+          <div class="mb-12">
+            <h3
+              class="text-2xl font-semibold text-blue-300 mb-6 border-b border-gray-600 pb-2"
+            >
+              Comandos Avanzados
+            </h3>
+
+            <div class="grid gap-6">
+              <!-- Execute command in container -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-purple-400">💻</span>
+                  Ejecutar comando en contenedor
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Ejecuta comandos dentro de un contenedor en ejecución.
+                </p>
+                <CommandCopyButton
+                  command="docker exec -it mi-contenedor bash"
+                />
+                <div
+                  class="mt-4 p-4 bg-purple-900/20 border border-purple-700/50 rounded-lg"
+                >
+                  <p class="text-purple-200 text-sm">
+                    <strong>Parámetros:</strong>
+                    <code class="text-purple-300">-i</code> mantiene STDIN abierto,
+                    <code class="text-purple-300">-t</code> asigna un pseudo-TTY
+                  </p>
+                </div>
+              </div>
+
+              <!-- View logs -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-yellow-400">📄</span>
+                  Ver logs del contenedor
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Muestra los logs de salida del contenedor.
+                </p>
+                <CommandCopyButton command="docker logs mi-contenedor" />
+                <div class="mt-4">
+                  <p class="text-yellow-200 text-sm mb-2">
+                    <strong>Seguir logs en tiempo real:</strong>
+                  </p>
+                  <CommandCopyButton command="docker logs -f mi-contenedor" />
+                </div>
+              </div>
+
+              <!-- Container stats -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-cyan-400">📊</span>
+                  Estadísticas del contenedor
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Muestra el uso de recursos en tiempo real.
+                </p>
+                <CommandCopyButton command="docker stats mi-contenedor" />
+              </div>
+
+              <!-- Port mapping -->
+              <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+                <h4
+                  class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+                >
+                  <span class="text-orange-400">🔌</span>
+                  Mapeo de puertos
+                </h4>
+                <p class="text-gray-300 mb-4">
+                  Ejecuta un contenedor con puertos mapeados al host.
+                </p>
+                <CommandCopyButton
+                  command="docker run -d -p 8080:80 --name web-server nginx"
+                />
+                <div
+                  class="mt-4 p-4 bg-orange-900/20 border border-orange-700/50 rounded-lg"
+                >
+                  <p class="text-orange-200 text-sm">
+                    <strong>Formato:</strong>
+                    <code class="text-orange-300"
+                      >-p host_port:container_port</code
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Images Section -->
+      <section id="images" class="mb-16">
+        <div
+          class="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-8"
+        >
+          <h2
+            class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3"
+          >
+            <span>🖼️</span>
+            Gestión de Imágenes
+          </h2>
+
+          <div class="grid gap-6">
+            <!-- List images -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-green-400">📋</span>
+                Listar imágenes
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Muestra todas las imágenes disponibles localmente.
+              </p>
+              <CommandCopyButton command="docker images" />
+            </div>
+
+            <!-- Pull image -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-blue-400">⬇️</span>
+                Descargar imagen
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Descarga una imagen desde Docker Hub u otro registry.
+              </p>
+              <CommandCopyButton command="docker pull ubuntu:20.04" />
+            </div>
+
+            <!-- Build image -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-purple-400">🔨</span>
+                Construir imagen
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Construye una imagen desde un Dockerfile.
+              </p>
+              <CommandCopyButton command="docker build -t mi-app:latest ." />
+              <div
+                class="mt-4 p-4 bg-purple-900/20 border border-purple-700/50 rounded-lg"
+              >
+                <p class="text-purple-200 text-sm">
+                  <strong>Parámetros:</strong>
+                  <code class="text-purple-300">-t</code> asigna un tag a la imagen,
+                  <code class="text-purple-300">.</code> usa el directorio actual
+                  como contexto
+                </p>
+              </div>
+            </div>
+
+            <!-- Remove image -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-red-400">🗑️</span>
+                Eliminar imagen
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Elimina una imagen del sistema local.
+              </p>
+              <CommandCopyButton command="docker rmi mi-app:latest" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Docker Compose Section -->
+      <section id="compose" class="mb-16">
+        <div
+          class="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-8"
+        >
+          <h2
+            class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3"
+          >
+            <span>🔧</span>
+            Docker Compose
+          </h2>
+
+          <div class="grid gap-6">
+            <!-- Start services -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-green-400">🚀</span>
+                Iniciar servicios
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Inicia todos los servicios definidos en docker-compose.yml.
+              </p>
+              <CommandCopyButton command="docker-compose up -d" />
+            </div>
+
+            <!-- Stop services -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-red-400">⏹️</span>
+                Detener servicios
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Detiene y elimina todos los contenedores, redes y volúmenes.
+              </p>
+              <CommandCopyButton command="docker-compose down" />
+            </div>
+
+            <!-- View logs -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-yellow-400">📄</span>
+                Ver logs de servicios
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Muestra los logs de todos los servicios.
+              </p>
+              <CommandCopyButton command="docker-compose logs -f" />
+            </div>
+
+            <!-- Scale services -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-cyan-400">📈</span>
+                Escalar servicios
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Escala un servicio a múltiples instancias.
+              </p>
+              <CommandCopyButton command="docker-compose up -d --scale web=3" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- System Commands -->
+      <section id="system" class="mb-16">
+        <div
+          class="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-8"
+        >
+          <h2
+            class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3"
+          >
+            <span>⚙️</span>
+            Comandos del Sistema
+          </h2>
+
+          <div class="grid gap-6">
+            <!-- System info -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-blue-400">ℹ️</span>
+                Información del sistema
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Muestra información detallada sobre Docker.
+              </p>
+              <CommandCopyButton command="docker system info" />
+            </div>
+
+            <!-- System prune -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-red-400">🧹</span>
+                Limpiar sistema
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Elimina contenedores, redes, imágenes y caché no utilizados.
+              </p>
+              <CommandCopyButton command="docker system prune -a" />
+              <div
+                class="mt-4 p-4 bg-red-900/20 border border-red-700/50 rounded-lg"
+              >
+                <p class="text-red-200 text-sm">
+                  <strong>⚠️ Cuidado:</strong> Este comando elimina todos los recursos
+                  no utilizados
+                </p>
+              </div>
+            </div>
+
+            <!-- Disk usage -->
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
+              <h4
+                class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+              >
+                <span class="text-yellow-400">💾</span>
+                Uso de disco
+              </h4>
+              <p class="text-gray-300 mb-4">
+                Muestra el espacio utilizado por Docker.
+              </p>
+              <CommandCopyButton command="docker system df" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tips and Best Practices -->
+      <section class="mb-16">
+        <div
+          class="bg-gradient-to-r from-blue-900/50 to-purple-900/50 backdrop-blur-sm rounded-2xl border border-blue-700/50 p-8"
+        >
+          <h2
+            class="text-3xl font-bold text-blue-300 mb-8 flex items-center gap-3"
+          >
+            <span>💡</span>
+            Tips y Mejores Prácticas
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-600">
+              <h3 class="text-xl font-semibold text-blue-400 mb-4">
+                🚀 Rendimiento
+              </h3>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Usa imágenes base ligeras como Alpine
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Aprovecha el cache de capas en builds
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Usa multi-stage builds para reducir tamaño
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-600">
+              <h3 class="text-xl font-semibold text-blue-400 mb-4">
+                🔒 Seguridad
+              </h3>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  No ejecutes contenedores como root
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Escanea imágenes en busca de vulnerabilidades
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Usa secrets para información sensible
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-600">
+              <h3 class="text-xl font-semibold text-blue-400 mb-4">
+                📦 Organización
+              </h3>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Usa tags semánticos para versioning
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Documenta tus Dockerfiles
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Agrupa servicios relacionados con Compose
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-600">
+              <h3 class="text-xl font-semibold text-blue-400 mb-4">
+                🔧 Mantenimiento
+              </h3>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Limpia regularmente recursos no utilizados
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Monitorea el uso de recursos
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  Mantén actualizadas las imágenes base
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800/50 backdrop-blur-sm border-t border-gray-700">
+      <div class="container mx-auto px-4 py-8">
+        <div class="text-center">
+          <div class="flex items-center justify-center gap-2 mb-4">
+            <img src="/images/docker.svg" alt="Docker" class="w-8 h-8" />
+            <span class="text-xl font-bold text-white">Docker Essentials</span>
+          </div>
+          <p class="text-gray-400 text-sm mb-4">
+            Guía completa de comandos Docker para desarrollo profesional
+          </p>
+          <div class="flex justify-center gap-4">
+            <a
+              href="/"
+              class="text-blue-400 hover:text-blue-300 transition-colors"
+              >← Volver al inicio</a
+            >
+            <a
+              href="/github"
+              class="text-green-400 hover:text-green-300 transition-colors"
+              >GitHub →</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>

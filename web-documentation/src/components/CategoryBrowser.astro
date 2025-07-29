@@ -80,12 +80,12 @@ const allCategories = [
             </span>
           </div>
           <p class="text-gray-300">{cat.description}</p>
-          <button
-            type="button"
-            class="mt-4 bg-blue-600 hover:bg-blue-700 text-white rounded px-3 py-1"
+          <a
+            href={`/${cat.slug}`}
+            class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white rounded px-3 py-1 cursor-pointer"
           >
             Explorar Comandos →
-          </button>
+          </a>
         </article>
       ))
     }
